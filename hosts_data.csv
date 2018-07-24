@@ -1,0 +1,6 @@
+﻿name,description,interface_speed,interface_mtu,negotiation,vlan_id,address_1,address_2,address_3
+GigabitEthernet0/0/0/0,Test_10,1000,1900,auto,10,10.0.0.1/24,11.0.0.1/24 secondary,12.0.0.2/30 secondary
+GigabitEthernet0/0/0/1,Test_11,100,1518,auto,11,192.168.10.1/24,192.168.50.1/26 secondary,0
+GigabitEthernet0/0/0/3,No Vlan,1600,1900,auto,0,172.16.18.1/24,0,0
+GigabitEthernet0/0/0/4,TEST_VLAN40,1500,1518,auto,40,172.18.20.1/24,121.1.1.1/32 secondary,0
+GigabitEthernet0/0/0/5,Ejemplo sin vlan,1518,1900,auto,0,192.168.15.1/24,0,0

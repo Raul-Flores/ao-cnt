@@ -1,0 +1,28 @@
+{% for intf in interfaces %}
+ {% if intf.vlan_id != 0 %}
+  !
+   interface {{ intf.name }}.{{ intf.vlan_id }}
+   description {{ intf.description }}
+   negotiation {{ intf.negotiation }}
+   no shutdown
+ {% else %}
+  !
+   interface {{ intf.name }}
+   description {{ intf.description }}
+   negotiation {{ intf.negotiation }}
+   no shutdown
+ {% endif %}
+  speed {{ intf.interface_speed }} 
+   mtu   {{ intf.interface_mtu }}
+ {% if intf.address_1 != 0 %}
+  ipv4 address {{ intf.address_1 }}
+ {% endif %}
+ {% if intf.address_2 != 0 %}
+  ipv4 address {{ intf.address_2 }}
+ {% endif %}
+ {% if intf.address_3 != 0 %}
+  ipv4 address {{ intf.address_3 }}
+  {% endif %}
+ !
+!
+{% endfor %}

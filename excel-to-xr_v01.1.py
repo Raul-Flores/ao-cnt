@@ -20,8 +20,7 @@ class Interface(object):
         self.ip4 = ip4
 
     def __str__(self):
-        return("Interface:\n"
-               "  old_int: {0}\n"
+        return("  old_int: {0}\n"
                "  new_int: {1}\n"
                "  neg: {2}\n"
                "  bd: {3}\n"
@@ -64,7 +63,10 @@ for row in range(1, number_of_rows):
     items.append(item)
 
 file = open('CNT.yml', 'a+') 
+file.write('---\n')
+file.write('interfaces:\n')
 for item in items:
+    file.write('-\n')
     file.write(str(item))
 
 file.close()

@@ -1,28 +1,34 @@
 {% for intf in interfaces %}
- {% if intf.vlan_id != 0 %}
-  !
-   interface {{ intf.name }}.{{ intf.vlan_id }}
-   description {{ intf.description }}
-   negotiation {{ intf.negotiation }}
-   no shutdown
- {% else %}
-  !
-   interface {{ intf.name }}
-   description {{ intf.description }}
-   negotiation {{ intf.negotiation }}
-   no shutdown
- {% endif %}
-  speed {{ intf.interface_speed }} 
-   mtu   {{ intf.interface_mtu }}
- {% if intf.address_1 != 0 %}
-  ipv4 address {{ intf.address_1 }}
- {% endif %}
- {% if intf.address_2 != 0 %}
-  ipv4 address {{ intf.address_2 }}
- {% endif %}
- {% if intf.address_3 != 0 %}
-  ipv4 address {{ intf.address_3 }}
-  {% endif %}
+    {% if intf.dot1q != None %}
  !
+ ! Migracion de Interfaz: {{ intf.old_int }}.{{ intf.dot1q }} -> {{ intf.new_int }}.{{ intf.dot1q }}
+ interface {{ intf.new_int }}.{{ intf.dot1q }}
+  description {{ intf.descrip }}
+ {% else %}
+ !
+ ! Migracion de Interfaz: {{ intf.old_int }} -> {{ intf.new_int }}
+ interface {{ intf.new_int }}
+  description {{ intf.descrip }}
+  negotiation {{ intf.neg }}
+  no shutdown
+{% endif %}
+{% if intf.mtu != None %}
+ mtu {{ intf.mtu }}
+{% endif %}
+{% if intf.ip1 | regex_search('((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)') %}
+{% if intf.ip1 != None %}
+  ipv4 address {{ intf.ip1 }}
+{% endif %}
+{% if intf.ip2 != None %}
+  ipv4 address {{ intf.ip2 }}
+{% endif %}
+{% if intf.ip3 != None %}
+  ipv4 address {{ intf.ip3 }}
+{% endif %}
+{% if intf.ip4 != None %}
+  ipv4 address {{ intf.ip4 }}
+{% endif %}
+{% endif %}
 !
 {% endfor %}
+

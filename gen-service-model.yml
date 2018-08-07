@@ -3,7 +3,7 @@
   gather_facts: no
   tags: [ model ]
   vars_files:
-  - "prov-service-model/{{model|default('deploy-model.yaml')}}"
+  - "prov-service-model/{{model|default('deploy-model.yml')}}"
   tasks:
   - name: Creando el Device model basandonos en el Service model
     template: src=prov-service-model/deploy-model-to-device-data.j2 dest=./prov-data-model/deploy-model.cfg
